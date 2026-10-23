@@ -1,65 +1,29 @@
-
-import { useState } from "react";
-import { characters } from "./data/characters";
-import { CharacterCard } from "./components/CharacterCard";
-import { SeasonFilter } from "./components/SeasonFilter";
-import { CharacterSearch } from "./components/CharacterSearch";
-import { FaqSection } from "./components/FaqSection";
+import { Link, Routes, Route } from "react-router";
+import {HomePage} from "./pages/HomePage";
+import {CharactersPage} from "./pages/CharactersPage";
+import {FaqPage} from "./pages/FaqPage";
 
 function App() {
-  const [selectedSeason, setSelectedSeason] = useState<number>(0);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
-  const filteredCharacters = characters.filter((character) => {
-    const matchesSeason =
-      selectedSeason === 0 ||
-      character.seasons.includes(selectedSeason);
-
-    const matchesSearch = character.name
-      .toLowerCase()
-      .includes(searchQuery.trim().toLowerCase());
-
-    return matchesSeason && matchesSearch;
-  });
-
   return (
-    <main>
-      <h1>FROMpedia</h1>
-      <h2>Characters</h2>
+    <div>
+      <header>
+        <h2>FROMpedia</h2>
 
-      <SeasonFilter
-        selectedSeason={selectedSeason}
-        onSeasonChange={setSelectedSeason}
-      />
+        <nav aria-label="Main navigation">
+          <Link to="/">Home</Link>{" "}
+          <Link to="/characters">Characters</Link>{" "}
+          <Link to="/faq">FAQs</Link>
+        </nav>
+      </header>
 
-      <CharacterSearch
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-      />
-
-      <button
-        onClick={() => setSearchQuery("")}
-        disabled={searchQuery.length === 0}
-      >
-        Clear Search
-      </button>
-
-      <p>{filteredCharacters.length} characters found</p>
-
-      {filteredCharacters.length === 0 ? (
-        <p>No characters found</p>
-      ) : (
-        filteredCharacters.map((character) => (
-          <CharacterCard
-            key={character.id}
-            name={character.name}
-            role={character.role}
-          />
-        ))
-      )}
-
-      <FaqSection />
-    </main>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/characters" element={<CharactersPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+        </Routes>
+      </main>
+    </div>
   );
 }
 
