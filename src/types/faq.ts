@@ -1,4 +1,5 @@
-export type FAQItemProps = {
+export interface FAQ {
+  id: number;
   question: string;
   answer: string;
-};
+}
