@@ -9,21 +9,22 @@ export function SeasonFilter({selectedSeason, onSeasonChange,}: SeasonFilterProp
 
     return (
         <div>
-            <p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-stone-400">
                 Selected Season:{" "}
-                {selectedSeason === 0 ? "All Seasons" : selectedSeason}
+                <span className="ml-1 text-red-300">{selectedSeason === 0 ? "All Seasons" : selectedSeason}</span>
             </p>
 
-            {seasons.map((season) => {
+            <div className="flex flex-wrap gap-2">{seasons.map((season) => {
                 return (
                     <button
+                        className="border border-stone-700 bg-stone-950 px-3 py-2 text-xs font-bold uppercase tracking-wider text-stone-400 transition hover:border-red-500 hover:bg-red-500/10 hover:text-red-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400 sm:px-4"
                         key={season}
                         onClick={() => onSeasonChange(season)}
                     >
                         {season === 0 ? "All Seasons" : `Season ${season}`}
                     </button>
                 );
-            })}
+            })}</div>
         </div>
     );
 }
