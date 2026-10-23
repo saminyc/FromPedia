@@ -2,15 +2,23 @@ import { useState } from "react";
 import characters from "./data/characters";
 import CharacterCard from "./components/CharacterCard";
 import SeasonFilter from "./components/SeasonFilter";
+import { CharacterSearch } from "./components/CharacterSearch";
 
 function App() {
   const [selectedSeason, setSelectedSeason] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const filteredCharacters = characters.filter((character) => {
-    return (
+    const matchesSeason =
       selectedSeason === 0 ||
-      character.seasons.includes(selectedSeason)
-    );
+      character.seasons
+        .includes(selectedSeason);
+
+    const matchesSearch = character.name
+      .toLowerCase()
+      .includes(searchQuery.trim().toLowerCase());
+
+    return matchesSeason && matchesSearch;
   });
 
   return (
@@ -23,15 +31,29 @@ function App() {
         onSeasonChange={setSelectedSeason}
       />
 
-      {filteredCharacters.map((character) => {
-        return (
+      <CharacterSearch
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
+
+      <p>{filteredCharacters.length} characters found</p>
+
+      {filteredCharacters.length === 0 ? (
+        <p>No characters found</p>
+      )
+        : (filteredCharacters.map((character) => (
           <CharacterCard
             key={character.id}
             name={character.name}
             role={character.role}
           />
-        );
-      })}
+        )))
+      }
+      <button onClick={()=>{
+        setSearchQuery("");
+      }}>
+        Clear Search
+      </button>
     </main>
   );
 }
