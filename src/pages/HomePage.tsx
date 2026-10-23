@@ -12,7 +12,10 @@ export function HomePage() {
         </p>
         <div className="mt-10 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-stone-400">
           <span className="border border-stone-600 bg-stone-950/70 px-4 py-3">Enter if you dare</span>
-          <span className="border border-red-700/50 bg-red-950/30 px-4 py-3 text-red-300">Now streaming on Netflix</span>
+          <span className="flex items-center gap-2 border border-red-700/60 bg-red-950/30 px-3 py-2 text-red-200 shadow-[0_0_20px_rgba(220,38,38,0.12)]">
+            <span className="grid h-7 w-5 place-items-center bg-red-600 font-sans text-base font-black tracking-tighter text-white shadow-sm">N</span>
+            <span>Now streaming on <strong className="font-black tracking-[0.12em] text-red-300">NETFLIX</strong></span>
+          </span>
           <span className="border border-stone-700 bg-stone-950/70 px-4 py-3">Field notes: ongoing</span>
         </div>
       </div>
