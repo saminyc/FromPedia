@@ -1,5 +1,6 @@
+import type { FAQ } from "../types/faq";
 
-export const faqs = [
+export const faqs:FAQ[] = [
   {
     id: 1,
     question: "What is FROM about?",

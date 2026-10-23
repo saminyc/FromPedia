@@ -1,22 +1,25 @@
-import { useState } from "react";
-
 type FAQItemProps = {
   question: string;
   answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
 };
 
-export function FAQItem({ question, answer }: FAQItemProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
+function FAQItem({
+  question,
+  answer,
+  isOpen,
+  onToggle,
+}: FAQItemProps) {
   return (
-    <div>
+    <div className="faq-item">
       <h3>
         <button
           type="button"
+          onClick={onToggle}
           aria-expanded={isOpen}
-          onClick={() => setIsOpen((previous) => !previous)}
         >
-          {question}
+          {question} {isOpen ? "−" : "+"}
         </button>
       </h3>
 
@@ -24,3 +27,5 @@ export function FAQItem({ question, answer }: FAQItemProps) {
     </div>
   );
 }
+
+export default FAQItem;
