@@ -1,15 +1,38 @@
+import { useState } from "react";
+import characters from "./data/characters";
+import CharacterCard from "./components/CharacterCard";
+import SeasonFilter from "./components/SeasonFilter";
+
 function App() {
-  const showName = "FROMpedia";
-  const characterName = "Boyd Stevens";
-  const characterRole = "Sheriff";
+  const [selectedSeason, setSelectedSeason] = useState<number>(0);
+
+  const filteredCharacters = characters.filter((character) => {
+    return (
+      selectedSeason === 0 ||
+      character.seasons.includes(selectedSeason)
+    );
+  });
 
   return (
-    <div>
-      <h1>{showName}</h1>
-      <p>Your guide to the mysteries of FROM.</p>
-      <p>Featured Character: {characterName}</p>
-      <p>Role: {characterRole}</p>
-    </div>
+    <main>
+      <h1>FROMpedia</h1>
+      <h2>Characters</h2>
+
+      <SeasonFilter
+        selectedSeason={selectedSeason}
+        onSeasonChange={setSelectedSeason}
+      />
+
+      {filteredCharacters.map((character) => {
+        return (
+          <CharacterCard
+            key={character.id}
+            name={character.name}
+            role={character.role}
+          />
+        );
+      })}
+    </main>
   );
 }
 
