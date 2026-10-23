@@ -3,7 +3,7 @@ type CharacterCardProps = {
   role: string;
 };
 
-function CharacterCard({ name, role }: CharacterCardProps) {
+export function CharacterCard({ name, role }: CharacterCardProps) {
   return (
     <article>
       <h2>{name}</h2>
@@ -12,4 +12,3 @@ function CharacterCard({ name, role }: CharacterCardProps) {
   );
 }
 
-export default CharacterCard;

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import characters from "./data/characters";
-import CharacterCard from "./components/CharacterCard";
-import SeasonFilter from "./components/SeasonFilter";
+import {characters} from "./data/characters";
+import {CharacterCard} from "./components/CharacterCard";
+import {SeasonFilter} from "./components/SeasonFilter";
 import { CharacterSearch } from "./components/CharacterSearch";
+import { FAQItem } from "./components/FaqItem";
+import { faqs } from "./data/faqs";
 
 function App() {
   const [selectedSeason, setSelectedSeason] = useState<number>(0);
@@ -35,7 +37,11 @@ function App() {
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
-
+      <button onClick={() => setSearchQuery("")}
+        disabled={searchQuery.length === 0}
+      >
+        Clear Search
+      </button>
       <p>{filteredCharacters.length} characters found</p>
 
       {filteredCharacters.length === 0 ? (
@@ -49,11 +55,21 @@ function App() {
           />
         )))
       }
-      <button onClick={()=>{
-        setSearchQuery("");
-      }}>
-        Clear Search
-      </button>
+      <section aria-labelledby="faq-heading">
+  <h2 id="faq-heading">Frequently Asked Questions</h2>
+  {
+    faqs.map((faq) => {
+      return (<FAQItem
+        key={faq.id}
+        question={faq.question}
+        answer={faq.answer}
+      />)
+    })
+  }
+ 
+</section>
+
+      
     </main>
   );
 }
