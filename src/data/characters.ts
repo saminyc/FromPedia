@@ -1,6 +1,6 @@
 import type { Character } from "../types/characters";
 
-const characters:Character[] = [
+export const characters:Character[] = [
   // MAIN CHARACTERS
   { id: 1, name: "Boyd Stevens", role: "Sheriff", seasons: [1, 2, 3, 4] },
   { id: 2, name: "Donna Raines", role: "Colony House Leader", seasons: [1, 2, 3, 4] },
@@ -87,4 +87,3 @@ const characters:Character[] = [
   { id: 73, name: "Professor Creature", role: "Night Creature", seasons: [1, 2, 3, 4] }
 ];
 
-export default characters;

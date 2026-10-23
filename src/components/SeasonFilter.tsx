@@ -4,7 +4,7 @@ type SeasonFilterProps = {
     onSeasonChange: (season: number) => void;
 };
 
-function SeasonFilter({selectedSeason, onSeasonChange,}: SeasonFilterProps) {
+export function SeasonFilter({selectedSeason, onSeasonChange,}: SeasonFilterProps) {
     const seasons = [0, 1, 2, 3, 4]; // 0 is for "All Seasons"
 
     return (
@@ -27,5 +27,3 @@ function SeasonFilter({selectedSeason, onSeasonChange,}: SeasonFilterProps) {
         </div>
     );
 }
-
-export default SeasonFilter;
