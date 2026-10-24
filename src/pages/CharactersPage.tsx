@@ -51,7 +51,7 @@ export function CharactersPage() {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {filteredCharacters.map((character) => (
-            <CharacterCard key={character.id} name={character.name} role={character.role} />
+            <CharacterCard key={character.id} name={character.name} role={character.role} image={character.image} />
           ))}
         </div>
       )}

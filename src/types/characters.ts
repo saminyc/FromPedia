@@ -3,4 +3,5 @@ export interface Character {
   name: string;
   role: string;
   seasons: number[];
+  image: string;
 }
